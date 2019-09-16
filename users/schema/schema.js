@@ -1,8 +1,10 @@
 const GraphQL = require('graphql');
+const axios = require('axios');
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLSchema,
 } = GraphQL;
 
 const UserType = new GraphQLObjectType({
@@ -20,9 +22,15 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: UserType,
       args: { id: { type: GraphQLString } },
-      resolve(parentValue, args) {
+      async resolve(parentValue, args) {
+        const response = await axios.get(`http://localhost:3000/users/${args.id}`);
 
+        return response.data;
       }
     },
   },
+});
+
+module.exports = new GraphQLSchema({
+  query: RootQuery,
 });

@@ -13,9 +13,10 @@
       "companyId": "2"
     },
     {
-      "firstName": "Ticio",
-      "age": 27,
-      "id": "7uBYQ12"
+      "firstName": "Alfredo",
+      "age": 31,
+      "id": "7uBYQ12",
+      "companyId": "2"
     }
   ],
   "companies": [

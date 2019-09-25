@@ -17,13 +17,16 @@ class LyricList extends Component {
         <li key={lyric.id} className="collection-item">
           {lyric.content}
 
-          <i
-            className="material-icons"
-            onClick={() => this.onLike(lyric.id)}
-          >
-            thumb_up
-          </i>
-          {lyric.likes}
+          <div className="vote-box">
+            {lyric.likes}
+
+            <i
+              className="material-icons"
+              onClick={() => this.onLike(lyric.id)}
+            >
+              thumb_up
+            </i>
+          </div>
         </li>
       );
     });

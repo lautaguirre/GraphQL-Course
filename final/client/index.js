@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Router, hashHistory, IndexRoute } from 'react-router';
-import ApolloClient from 'apollo-client';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import App from './components/App';
 
+const networkInterface = createNetworkInterface({
+  uri: '/graphql',
+  opts: {
+    credentials: 'same-origin'
+  }
+});
+
 const client = new ApolloClient({
+  networkInterface,
   dataIdFromObject: (o) => o.id,
 });
 

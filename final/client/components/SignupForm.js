@@ -15,6 +15,12 @@ class SignupForm extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.data.user && this.props.data.user) {
+      hashHistory.push('/dashboard')
+    }
+  }
+
   onSubmit({ email, password }) {
     this.props.mutate({
       variables: {
@@ -23,7 +29,6 @@ class SignupForm extends Component {
       },
       refetchQueries: [{ query }]
     })
-    .then(() => hashHistory.push('/dashboard'))
     .catch(res => {
       const errors = res.graphQLErrors.map(e => e.message);
 
@@ -42,4 +47,6 @@ class SignupForm extends Component {
   }
 }
 
-export default graphql(mutation)(SignupForm);
+export default graphql(query)(
+  graphql(mutation)(SignupForm)
+);

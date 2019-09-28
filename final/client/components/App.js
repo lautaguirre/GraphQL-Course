@@ -3,7 +3,7 @@ import Header from './Header';
 
 export default (props) => {
   return (
-    <div>
+    <div className="container">
       <Header />
       {props.children}
     </div>

@@ -7,7 +7,8 @@ import mutation from '../mutations/logout';
 
 class Header extends Component {
   onLogoutClick() {
-    this.props.mutate();
+    this.props.mutate({})
+      .then(() => this.props.data.refetch());
   }
 
   renderButtons() {
